@@ -22,7 +22,6 @@ ScrollReveal({
 
 // Target elements for animation
 ScrollReveal().reveal('.home-content, .heading1, .main-text', { origin: 'top' });
-// Added .certificates-content here
 ScrollReveal().reveal('.home-img, .about-img, .portfolio-content, .certificates-content, .contact-form-container', { origin: 'bottom' });
 ScrollReveal().reveal('.home-content h1, .about-text', { origin: 'left' });
 ScrollReveal().reveal('.home-content p, .contact-text', { origin: 'right' });
@@ -32,7 +31,6 @@ ScrollReveal().reveal('.home-content p, .contact-text', { origin: 'right' });
 // 3. Typed.js for Text Animation
 // ===================================
 var typed = new Typed(".text",{
-    // You can customize these strings
     strings: [
         "Full Stack Developer", 
         "Data Scientist", 

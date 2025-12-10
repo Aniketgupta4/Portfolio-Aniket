@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif; 
     text-decoration: none;
     list-style: none;
     scroll-behavior: smooth; 
@@ -31,7 +31,7 @@ body{
 }
 
 /* Reusable Components */
-.heading1 {
+.heading1, .main-text h2 {
     text-align: center;
     font-size: 45px;
     margin-bottom: 50px; 
@@ -41,7 +41,6 @@ body{
     color: var(--main-color);
 }
 .main-title span:first-child {
-    /* Ensures the name 'Aniket Kumar Gupta' is fully Cyan */
     color: var(--main-color); 
 }
 section {
@@ -102,14 +101,18 @@ section {
 ====================================
 */
 .home{
+    /* *** FIX: Center align the content within the container *** */
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: center; /* Center horizontally */
+    gap: 5rem; /* Increased gap for better spacing */
     padding: 0 9%; 
+    min-height: 100vh; /* Ensure it takes full viewport height */
 }
 
 .home-content{
-    max-width: 600px;
+    max-width: 500px; /* Adjusted width for better balance */
+    /* text-align: left; */ /* Default alignment */
 }
 
 .home-content .subtitle{
@@ -138,22 +141,27 @@ section {
 .home-img {
     width: 350px; 
     height: 350px; 
-    border-radius: 8px; 
+    border-radius: 50%; 
     overflow: hidden;
     position: relative;
     flex-shrink: 0;
+    box-shadow: 0 0 25px var(--main-color), 0 0 50px var(--main-color);
 }
 
 .home-img img {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    object-fit: cover; 
+    border-radius: 50%;
+    transition: transform 0.5s ease;
 }
 
-.home-sci a{
+.home-img:hover img {
+    transform: scale(1.05);
+}
+
+.home-sci a, .contact-icons a{
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -168,7 +176,7 @@ section {
     transition: .5s ease;
 }
 
-.home-sci a:hover{
+.home-sci a:hover, .contact-icons a:hover, .footer-social-icons a:hover{
     background: var(--main-color);
     color: var(--bg-color);
     box-shadow: 0 0 20px var(--main-color);
@@ -247,7 +255,6 @@ section {
 
 .skill-cards-container {
     display: grid;
-    /* Adjusted for 6 cards, allowing them to wrap gracefully */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 1.5rem;
     padding: 0 9%;
@@ -263,6 +270,10 @@ section {
     animation: fadeIn 1s ease forwards;
     animation-delay: calc(0.2s * var(--i));
     opacity: 0;
+    min-height: 200px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 @keyframes fadeIn {
@@ -293,6 +304,7 @@ section {
     font-size: 14px;
     color: #ccc;
     line-height: 1.4;
+    flex-grow: 1; 
 }
 
 /*
@@ -300,21 +312,15 @@ section {
 6. Portfolio & Certificates Section 
 ====================================
 */
-.main-text h2{
-    font-size: 45px;
-    line-height: 1;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
 .portfolio-content, .certificates-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    grid-auto-rows: 1fr; 
     gap: 2rem; 
     padding: 0 9%;
     margin-top: 2rem;
 }
-/* Certificates section styling (same as portfolio) */
+
 .certificates {
     background: var(--second-bg-color); 
 }
@@ -328,6 +334,9 @@ section {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: all 0.5s ease;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
 }
 
 .row:hover {
@@ -337,10 +346,10 @@ section {
 
 .row img{
     width: 100%;
+    height: 250px; 
     display: block; 
     transition: transform 0.5s;
-    height: 100%; /* Ensure all images cover the box */
-    object-fit: cover;
+    object-fit: cover; 
 }
 
 .layer{
@@ -405,7 +414,8 @@ section {
 .contact{
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    align-items: flex-start; 
+    /* *** FIX: Vertically align items to the center for a balanced look *** */
+    align-items: center; 
     gap: 3rem;
     padding: 50px 9%; 
     background: var(--bg-color);
@@ -431,6 +441,8 @@ section {
     font-size: 16px;
     margin-bottom: 15px;
     color: #ccc;
+    display: flex;
+    align-items: center;
 }
 
 .contact-list i{
@@ -440,37 +452,14 @@ section {
 }
 
 .contact-icons a{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px;
-    height: 45px;
-    background: transparent;
-    border: 2px solid var(--main-color);
-    border-radius: 50%; 
-    font-size: 20px;
-    color: var(--main-color);
     margin: 15px 10px 15px 0;
-    transition: .5s ease;
 }
 
-.contact-icons a:hover{
-    background: var(--main-color);
-    color: var(--bg-color);
-    box-shadow: 0 0 20px var(--main-color);
-}
-
-/* Form Styles */
 .contact-form-container {
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     background: var(--second-bg-color);
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    width: 100%; 
 }
 
 .contact-form input, .contact-form textarea {
@@ -525,36 +514,72 @@ section {
 
 /*
 ====================================
-8. Footer Section 
+8. Footer Section (Professional Redesign)
 ====================================
 */
 .footer {
     background: var(--form-bg);
-    padding: 30px 9% 10px;
+    padding: 50px 9% 20px; 
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr 1.5fr; 
     gap: 30px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-col h3, .footer-col h4 {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 15px;
     color: var(--main-color);
+    font-weight: 700;
 }
 
-.footer-col i {
+.footer-col p {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #ccc;
+    font-size: 15px;
+    display: block; 
+    padding: 5px 0;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-col ul li a:hover {
     color: var(--main-color);
-    margin-right: 8px;
+    transform: translateX(5px);
+}
+
+.footer-social-icons {
+    margin-top: 20px;
+    display: flex; /* Ensure horizontal alignment */
+}
+
+.footer-social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: var(--second-bg-color); 
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--main-color);
+    margin-right: 10px;
+    transition: .5s ease;
 }
 
 .footer-bottom {
     text-align: center;
-    padding: 15px 0 0;
+    padding: 20px 0 0;
+    font-size: 14px;
+    color: #ccc;
 }
 
 .top i{
@@ -569,9 +594,12 @@ section {
     bottom: 2rem;
     right: 2rem;
     z-index: 99; 
+    transition: transform 0.3s ease;
+}
+.top i:hover {
+    transform: translateY(-5px);
 }
 
-/* ... (Existing CSS) ... */
 
 /*
 ====================================
@@ -579,28 +607,35 @@ section {
 ====================================
 */
 
-/* 1. Tablets and Large Phones (max-width: 991px) */
+/* 1. Tablets and Laptop (max-width: 1200px / 991px) */
+@media (max-width: 1200px) {
+    .home {
+        gap: 3rem; /* Reduced gap */
+    }
+    .home-img {
+        width: 300px;
+        height: 300px;
+    }
+}
+
 @media (max-width: 991px) {
     .header {
         padding: 20px 5%; 
     }
     section {
-        /* Section padding adjusted */
         padding: 7rem 5% 2rem; 
     }
-    /* Adjusted padding for specific sections */
-    .home, .about, .contact, .skills, .portfolio, .certificates {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
+    
     /* Footer: 2 columns on tablets */
     .footer-content {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: 1.5fr 1fr; 
     }
     .footer-col.logo-col {
         grid-column: span 2; 
         text-align: center;
+    }
+    .footer-social-icons {
+        justify-content: center;
     }
 }
 
@@ -630,39 +665,28 @@ section {
     }
     
     /* --- Main Sections: Stacking Layout --- */
-    /* Home Section: Switch to column layout */
     .home {
         flex-direction: column;
         min-height: auto; 
-        padding-top: 10rem;
+        padding-top: 8rem;
         padding-bottom: 5rem;
     }
 
     .home-content {
-        order: 2; /* Content after the (now hidden) image area */
+        order: 2; 
         max-width: 100%; 
         text-align: center;
     }
-    /* Made Home-Image Responsive */
+    
     .home-img {
-        width: 250px; 
-        height: 250px;
-        margin-bottom: 2rem; /* Space below image before content */
-        order: 1; /* Image appears first */
-        display: block; /* Show the image here, maybe */
+        width: 200px; 
+        height: 200px;
+        margin-bottom: 2rem; 
+        order: 1; 
     }
-    /* If you still want to hide the home image on mobile */
-    /* .home-img { display: none; } */ 
 
     .home-sci {
         justify-content: center; 
-    }
-    
-    .home-content .main-title {
-        font-size: 38px; 
-    }
-    .home-content .profession {
-        font-size: 24px; 
     }
 
     /* About Section: Switch to column layout */
@@ -675,33 +699,32 @@ section {
         order: 1; 
         margin-bottom: 2rem;
     }
-    .about-img img {
-        max-width: 300px; /* Smaller image on mobile */
-    }
     .about-text {
         order: 2;
     }
-
-    /* Contact Section: Content stacking */
-    .contact-text h2 {
-        text-align: center;
-    }
-    .contact-list, .contact-icons {
-        /* This was already good, ensuring items stack vertically */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .contact-list ul {
-        width: fit-content;
-        text-align: left; /* Align list items to left */
-    }
-
-    /* Skills, Portfolio, Certificates: One column layout for better viewing */
+    
+    /* Skills, Portfolio, Certificates: One column layout */
     .skill-cards-container, 
     .portfolio-content, 
     .certificates-content {
-        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-columns: 1fr; 
+    }
+
+    /* Contact Section: Centered on mobile */
+    .contact-text h2 {
+        text-align: center;
+    }
+    .contact-list ul {
+        width: 100%;
+        padding-left: 0;
+        text-align: center;
+    }
+    .contact-list ul li {
+        justify-content: center;
+    }
+    .contact-icons {
+        justify-content: center;
+        display: flex;
     }
 
     /* Footer: Single column on small devices */
@@ -709,31 +732,27 @@ section {
         grid-template-columns: 1fr; 
         text-align: center;
     }
+    .footer-col.logo-col {
+        grid-column: span 1; 
+    }
+    .footer-col.links-col ul {
+        width: fit-content;
+        margin: 0 auto;
+    }
 }
 
 /* 3. Small Mobile Phones (max-width: 480px) */
 @media (max-width: 480px) {
-    /* Reduce base padding further for very small screens */
     section {
         padding: 6rem 4% 1rem;
     }
-    .home, .about, .contact, .skills, .portfolio {
-        padding-left: 4%; 
-        padding-right: 4%; 
-    }
-    .heading1, .main-text h2 {
-        font-size: 30px;
-        margin-bottom: 20px;
+    
+    .home-img {
+        width: 180px; 
+        height: 180px;
     }
 
-    .home-content .main-title {
-        font-size: 28px;
-    }
-    .home-content .profession {
-        font-size: 20px;
-    }
-    .btn-box {
-        padding: 10px 24px;
-        font-size: 14px;
+    .about-img {
+        display: none;
     }
 }
