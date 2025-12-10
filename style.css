@@ -44,8 +44,9 @@ body{
     color: var(--main-color); 
 }
 section {
-    min-height: 100vh;
-    padding: 10rem 9% 2rem;
+    /* Global change for better content management */
+    min-height: auto; 
+    padding: 10rem 9% 5rem; 
 }
 
 /*
@@ -103,14 +104,15 @@ section {
 .home{
     display: flex;
     align-items: center;
-    justify-content: center; /* Center horizontally */
+    justify-content: center; 
     gap: 5rem; 
-    padding: 0 9%; 
+    padding: 10rem 9% 5rem; 
+    /* Keeping 100vh on Desktop for a striking hero section look */
     min-height: 100vh; 
 }
 
 .home-content{
-    max-width: 500px; /* Base width */
+    max-width: 500px; 
 }
 
 .home-content .subtitle{
@@ -208,7 +210,7 @@ section {
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 3rem; 
-    padding: 50px 9%; 
+    padding: 10rem 9% 5rem; 
     background: var(--second-bg-color); 
 }
 
@@ -253,7 +255,6 @@ section {
 
 .skill-cards-container {
     display: grid;
-    /* *** MODIFIED: Reduced minmax value for better scaling on zoom out/small desktop mode *** */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 1.5rem;
     padding: 0 9%;
@@ -415,7 +416,7 @@ section {
     grid-template-columns: repeat(2,1fr);
     align-items: center; 
     gap: 3rem;
-    padding: 50px 9%; 
+    padding: 10rem 9% 5rem; 
     background: var(--bg-color);
 }
 
@@ -556,7 +557,7 @@ section {
 
 .footer-social-icons {
     margin-top: 20px;
-    display: flex; /* Ensure horizontal alignment */
+    display: flex; 
 }
 
 .footer-social-icons a {
@@ -601,21 +602,20 @@ section {
 
 /*
 ====================================
-9. Media Queries for FULL Responsiveness (MODIFIED FOR BETTER ZOOOMING)
+9. Media Queries for FULL Responsiveness (MODIFIED)
 ====================================
 */
 
 /* 1. Tablets and Laptop (max-width: 1200px) - Slightly reduced sizes */
 @media (max-width: 1200px) {
     section {
-        /* Adjusted base padding slightly */
-        padding: 9rem 7% 2rem; 
+        padding: 9rem 7% 4rem; 
     }
     .home {
         gap: 3rem; 
     }
     .home-content {
-        max-width: 450px; /* Reduced base max-width */
+        max-width: 450px; 
     }
     .home-content .main-title{
         font-size: 40px; 
@@ -638,7 +638,7 @@ section {
         padding: 20px 5%; 
     }
     section {
-        padding: 7rem 5% 2rem; /* Reduced padding for smaller screens */
+        padding: 7rem 5% 2rem; 
     }
     
     /* Home Section adjustments */
@@ -646,8 +646,8 @@ section {
         gap: 2rem;
     }
     .home-content {
-        max-width: 100%; /* Allow full width to prevent shrinking */
-        padding: 0 20px; /* Internal padding */
+        max-width: 100%; 
+        padding: 0 20px; 
     }
     .home-content .main-title{
         font-size: 38px;
@@ -714,6 +714,7 @@ section {
 
     .home {
         flex-direction: column;
+        /* CRITICAL FIX: min-height को auto किया गया */
         min-height: auto; 
         padding-top: 8rem;
         padding-bottom: 5rem;
@@ -746,6 +747,7 @@ section {
     .about, .contact {
         grid-template-columns: 1fr; 
         text-align: center;
+        padding: 7rem 5% 4rem; 
     }
 
     .about-img {
@@ -760,7 +762,6 @@ section {
     .skill-cards-container, 
     .portfolio-content, 
     .certificates-content {
-        /* *** MODIFIED: Ensure items stack in one column when screen is small *** */
         grid-template-columns: 1fr; 
         padding: 0 5%;
     }
@@ -811,5 +812,71 @@ section {
     /* Hiding image on very small screens to save space */
     .about-img {
         display: none;
+    }
+}
+
+/*
+====================================
+10. Targeted Media Query for Phone Landscape View Fix
+====================================
+*/
+
+@media (max-width: 800px) and (max-height: 450px) {
+    
+    section {
+        min-height: auto; 
+        padding-top: 5rem; 
+        padding-bottom: 3rem; 
+    }
+
+    /* Home Section Specific Fixes */
+    .home {
+        padding: 5rem 5% 3rem; 
+        flex-direction: row; 
+        gap: 1.5rem;
+        /* CRITICAL FIX: min-height को auto किया गया */
+        min-height: auto; 
+    }
+
+    .home-content {
+        max-width: 50%;
+        text-align: left;
+    }
+    
+    .home-img {
+        width: 150px; 
+        height: 150px;
+        margin-bottom: 0;
+        order: 2; 
+        flex-shrink: 0; 
+    }
+    .home-sci {
+        justify-content: flex-start;
+    }
+    
+    /* General Layout & Component Fixes */
+    .about, .contact {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+        padding: 50px 5%;
+    }
+    
+    /* Adjust portfolio/skills to be two columns for landscape phone */
+    .skill-cards-container, 
+    .portfolio-content, 
+    .certificates-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+        gap: 1rem;
+        padding: 0 5%;
+    }
+
+    .about-img {
+        display: block; 
+        order: 1;
+        text-align: center;
+    }
+    .about-text {
+        order: 2;
+        padding: 0;
     }
 }
