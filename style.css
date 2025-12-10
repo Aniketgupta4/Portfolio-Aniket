@@ -101,18 +101,16 @@ section {
 ====================================
 */
 .home{
-    /* *** FIX: Center align the content within the container *** */
     display: flex;
     align-items: center;
     justify-content: center; /* Center horizontally */
-    gap: 5rem; /* Increased gap for better spacing */
+    gap: 5rem; 
     padding: 0 9%; 
-    min-height: 100vh; /* Ensure it takes full viewport height */
+    min-height: 100vh; 
 }
 
 .home-content{
-    max-width: 500px; /* Adjusted width for better balance */
-    /* text-align: left; */ /* Default alignment */
+    max-width: 500px; /* Base width */
 }
 
 .home-content .subtitle{
@@ -255,7 +253,8 @@ section {
 
 .skill-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    /* *** MODIFIED: Reduced minmax value for better scaling on zoom out/small desktop mode *** */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 1.5rem;
     padding: 0 9%;
 }
@@ -414,7 +413,6 @@ section {
 .contact{
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    /* *** FIX: Vertically align items to the center for a balanced look *** */
     align-items: center; 
     gap: 3rem;
     padding: 50px 9%; 
@@ -603,29 +601,73 @@ section {
 
 /*
 ====================================
-9. Media Queries for FULL Responsiveness
+9. Media Queries for FULL Responsiveness (MODIFIED FOR BETTER ZOOOMING)
 ====================================
 */
 
-/* 1. Tablets and Laptop (max-width: 1200px / 991px) */
+/* 1. Tablets and Laptop (max-width: 1200px) - Slightly reduced sizes */
 @media (max-width: 1200px) {
+    section {
+        /* Adjusted base padding slightly */
+        padding: 9rem 7% 2rem; 
+    }
     .home {
-        gap: 3rem; /* Reduced gap */
+        gap: 3rem; 
+    }
+    .home-content {
+        max-width: 450px; /* Reduced base max-width */
+    }
+    .home-content .main-title{
+        font-size: 40px; 
+    }
+    .home-content .profession{
+        font-size: 26px; 
     }
     .home-img {
         width: 300px;
         height: 300px;
     }
+    .heading1, .main-text h2 {
+        font-size: 40px; 
+    }
 }
 
+/* 2. Small Tablets and Large Mobile Phones (max-width: 991px) - Primary tablet breakpoint */
 @media (max-width: 991px) {
     .header {
         padding: 20px 5%; 
     }
     section {
-        padding: 7rem 5% 2rem; 
+        padding: 7rem 5% 2rem; /* Reduced padding for smaller screens */
     }
     
+    /* Home Section adjustments */
+    .home {
+        gap: 2rem;
+    }
+    .home-content {
+        max-width: 100%; /* Allow full width to prevent shrinking */
+        padding: 0 20px; /* Internal padding */
+    }
+    .home-content .main-title{
+        font-size: 38px;
+    }
+    .home-content .profession{
+        font-size: 24px;
+    }
+    .home-img {
+        width: 250px; 
+        height: 250px;
+    }
+    
+    /* About & Contact: Keep 2-column if possible, reduce gap */
+    .about, .contact {
+        gap: 1.5rem; 
+    }
+    .about-img img {
+        max-width: 350px;
+    }
+
     /* Footer: 2 columns on tablets */
     .footer-content {
         grid-template-columns: 1.5fr 1fr; 
@@ -639,7 +681,7 @@ section {
     }
 }
 
-/* 2. Small Tablets and Large Mobile Phones (max-width: 768px) */
+/* 3. Mobile Devices (max-width: 768px) - Switching to single column */
 @media (max-width: 768px) {
     /* --- Header / Navigation --- */
     #menu-icon {
@@ -665,6 +707,11 @@ section {
     }
     
     /* --- Main Sections: Stacking Layout --- */
+    .heading1, .main-text h2 {
+        font-size: 35px; 
+        margin-bottom: 30px;
+    }
+
     .home {
         flex-direction: column;
         min-height: auto; 
@@ -676,6 +723,12 @@ section {
         order: 2; 
         max-width: 100%; 
         text-align: center;
+    }
+    .home-content .main-title{
+        font-size: 36px;
+    }
+    .home-content .profession{
+        font-size: 22px;
     }
     
     .home-img {
@@ -707,12 +760,15 @@ section {
     .skill-cards-container, 
     .portfolio-content, 
     .certificates-content {
+        /* *** MODIFIED: Ensure items stack in one column when screen is small *** */
         grid-template-columns: 1fr; 
+        padding: 0 5%;
     }
 
     /* Contact Section: Centered on mobile */
     .contact-text h2 {
         text-align: center;
+        font-size: 35px;
     }
     .contact-list ul {
         width: 100%;
@@ -741,7 +797,7 @@ section {
     }
 }
 
-/* 3. Small Mobile Phones (max-width: 480px) */
+/* 4. Small Mobile Phones (max-width: 480px) */
 @media (max-width: 480px) {
     section {
         padding: 6rem 4% 1rem;
@@ -752,6 +808,7 @@ section {
         height: 180px;
     }
 
+    /* Hiding image on very small screens to save space */
     .about-img {
         display: none;
     }
