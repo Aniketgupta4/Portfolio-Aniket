@@ -47,5 +47,5 @@ This portfolio demonstrates:
 
 ### 1. Clone / Download
 ```bash
-git clone https://github.com/yourusername/portfolio-website.git
-cd portfolio-website
+git clone https://github.com/yourusername/Portfolio-Aniket.git
+cd Portfolio-Aniket
